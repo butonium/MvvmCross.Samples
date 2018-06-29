@@ -3,3 +3,7 @@
 ################################################################################
 
 /NativeLibrary.Sample/NativeLibrary.Sample/.vs/NativeLibrary.Sample
+/.vs
+/NativeLibrary.Sample/.vs/NativeLibrary.Sample
+/NativeLibrary.Sample/NativeLibrary.Sample.Core/obj
+/NativeLibrary.Sample/NativeLibrary.Sample.Droid/obj
