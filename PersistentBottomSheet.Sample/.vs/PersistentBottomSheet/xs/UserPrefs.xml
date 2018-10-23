@@ -1,0 +1,23 @@
+﻿<Properties StartupConfiguration="{138DBB7C-62F4-4455-8E05-3D6DE059AD5F}|Default">
+  <MonoDevelop.Ide.ItemProperties.PersistentBottomSheet.Touch PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.E04CBA69-249F-45FA-B896-40D3F8F6443B" automaticSigning="False" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="PersistentBottomSheet.Touch/Main.cs">
+    <Files>
+      <File FileName="PersistentBottomSheet.Droid/Views/SampleView.cs" Line="1" Column="1" />
+      <File FileName="PersistentBottomSheet.Droid/Resources/layout/SampleView.axml" Line="1" Column="1" />
+      <File FileName="PersistentBottomSheet.Touch/AppDelegate.cs" Line="26" Column="71" />
+      <File FileName="PersistentBottomSheet.Touch/Views/SampleViewController.cs" Line="26" Column="2" />
+      <File FileName="PersistentBottomSheet.Droid/Resources/layout/SplashScreen.axml" Line="1" Column="1" />
+      <File FileName="PersistentBottomSheet.Touch/Main.cs" Line="12" Column="1" />
+      <File FileName="PersistentBottomSheet.Touch/Setup.cs" Line="8" Column="9" />
+      <File FileName="PersistentBottomSheet.Touch/Info.plist" />
+      <File FileName="PersistentBottomSheet.Core/App.cs" Line="1" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.ItemProperties.PersistentBottomSheet.Droid PreferredExecutionTarget="Android.SelectDevice" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MultiItemStartupConfigurations />
+</Properties>

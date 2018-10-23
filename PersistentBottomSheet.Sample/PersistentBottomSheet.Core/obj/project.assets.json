@@ -218,30 +218,28 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\buto\\.nuget\\packages\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "/Users/alex.steefan/.nuget/packages/": {},
+    "/usr/local/share/dotnet/sdk/NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\MvvmCross.Samples\\PersistentBottomSheet\\PersistentBottomSheet.Core\\PersistentBottomSheet.Core.csproj",
+      "projectUniqueName": "/Users/alex.steefan/Documents/_git/buto.s/PersistentBottomSheet.Sample/PersistentBottomSheet.Core/PersistentBottomSheet.Core.csproj",
       "projectName": "PersistentBottomSheet.Core",
-      "projectPath": "C:\\MvvmCross.Samples\\PersistentBottomSheet\\PersistentBottomSheet.Core\\PersistentBottomSheet.Core.csproj",
-      "packagesPath": "C:\\Users\\buto\\.nuget\\packages\\",
-      "outputPath": "C:\\MvvmCross.Samples\\PersistentBottomSheet\\PersistentBottomSheet.Core\\obj\\",
+      "projectPath": "/Users/alex.steefan/Documents/_git/buto.s/PersistentBottomSheet.Sample/PersistentBottomSheet.Core/PersistentBottomSheet.Core.csproj",
+      "packagesPath": "/Users/alex.steefan/.nuget/packages/",
+      "outputPath": "/Users/alex.steefan/Documents/_git/buto.s/PersistentBottomSheet.Sample/PersistentBottomSheet.Core/obj",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\buto\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "/Users/alex.steefan/.config/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "netstandard2.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -260,12 +258,12 @@
         "dependencies": {
           "MvvmCross": {
             "target": "Package",
-            "version": "[6.2.0, )"
+            "version": "6.2.0"
           },
           "NETStandard.Library": {
             "suppressParent": "All",
             "target": "Package",
-            "version": "[2.0.3, )",
+            "version": "2.0.3",
             "autoReferenced": true
           }
         },
