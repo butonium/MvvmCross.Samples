@@ -1,4 +1,4 @@
-﻿################################################################################
+################################################################################
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
@@ -13,21 +13,15 @@
 *.ide
 *.ide-shm
 *.ide-wal
-/PersistentBottomSheet/PersistentBottomSheet.Core/bin/Debug/netstandard2.0/PersistentBottomSheet.Core.deps.json
+/PersistentBottomSheet/PersistentBottomSheet.Core/bin/
 *.dll
 *.pdb
-/PersistentBottomSheet/PersistentBottomSheet.Core/obj/Debug/netstandard2.0/PersistentBottomSheet.Core.AssemblyInfo.cs
 *.cache
-/PersistentBottomSheet/PersistentBottomSheet.Core/obj/Debug/netstandard2.0/PersistentBottomSheet.Core.csproj.FileListAbsolute.txt
-/PersistentBottomSheet/PersistentBottomSheet.Core/obj/PersistentBottomSheet.Core.csproj.nuget.g.props
+/PersistentBottomSheet/PersistentBottomSheet.Core/obj/
 *.class
 *.txt
 /PersistentBottomSheet/PersistentBottomSheet.Droid/Resources/Resource.Designer.cs
 /PersistentBottomSheet/PersistentBottomSheet.Droid/PersistentBottomSheet.Droid.csproj.user
-/PersistentBottomSheet/PersistentBottomSheet.Droid/obj/project.assets.json.stamp
-/PersistentBottomSheet/PersistentBottomSheet.Droid/obj/project.assets.json
-/PersistentBottomSheet/PersistentBottomSheet.Droid/obj/PersistentBottomSheet.Droid.csproj.nuget.g.targets
-/PersistentBottomSheet/PersistentBottomSheet.Droid/obj/PersistentBottomSheet.Droid.csproj.nuget.g.props
 *.flag
 /PersistentBottomSheet/PersistentBottomSheet.Core/bin/
 /PersistentBottomSheet/PersistentBottomSheet.Core/obj/
@@ -35,19 +29,13 @@
 /PersistentBottomSheet/PersistentBottomSheet.Droid/obj/
 *.user
 /AutoComplete.Sample/.vs/
-/NativeLibrary.Sample/NativeLibrary.Sample.Droid/libs/armeabi/yXEiYQ4.png
-/NativeLibrary.Sample/NativeLibrary.Sample.Droid/libs/armeabi-v7a/shazam.jpg
-/NativeLibrary.Sample/NativeLibrary.Sample.Droid/libs/armeabi-v7a/sdasd.png
-/NativeLibrary.Sample/NativeLibrary.Sample.Droid/libs/armeabi-v7a/idee.png
-/NativeLibrary.Sample/NativeLibrary.Sample.Droid/libs/armeabi-v7a/asdasdasd.png
+/NativeLibrary.Sample/NativeLibrary.Sample.Droid/libs/
 /AutoComplete.Sample/.vs/AutoComplete.Sample/v15/.suo
-/AutoComplete.Sample/AutoComplete.Core/obj/Debug/netstandard2.0/
-/AutoComplete.Core.AssemblyInfo.cs
-/AutoComplete.Sample/AutoComplete.Droid/bin/
 /AutoComplete.Sample/AutoComplete.Droid/obj/
 /AutoComplete.Sample/AutoComplete.Core/obj/
 /AutoComplete.Sample/AutoComplete.Core/bin/
-/AutoComplete.Sample/AutoComplete.Core/obj/
 /PersistentBottomSheet.Sample/PersistentBottomSheet.Core/bin/
 /PersistentBottomSheet.Sample/PersistentBottomSheet.Droid/obj/
 /PersistentBottomSheet.Sample/PersistentBottomSheet.Droid/bin/
+PersistentBottomSheet.Sample/PersistentBottomSheet.Touch/obj/
+PersistentBottomSheet.Sample/PersistentBottomSheet.Touch/bin/
