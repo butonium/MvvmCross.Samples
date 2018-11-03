@@ -1,6 +1,6 @@
-﻿// WARNING
+// WARNING
 //
-// This file has been generated automatically by Xamarin Studio from the outlets and
+// This file has been generated automatically by Visual Studio from the outlets and
 // actions declared in your storyboard file.
 // Manual changes to this file will not be maintained.
 //
@@ -11,11 +11,28 @@ using UIKit;
 
 namespace PersistentBottomSheet.Touch.Views
 {
-    [Register("SampleViewController")]
+    [Register ("SampleViewController")]
     partial class SampleViewController
     {
-        void ReleaseDesignerOutlets()
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIView bottomView { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIView mainView { get; set; }
+
+        void ReleaseDesignerOutlets ()
         {
+            if (bottomView != null) {
+                bottomView.Dispose ();
+                bottomView = null;
+            }
+
+            if (mainView != null) {
+                mainView.Dispose ();
+                mainView = null;
+            }
         }
     }
 }

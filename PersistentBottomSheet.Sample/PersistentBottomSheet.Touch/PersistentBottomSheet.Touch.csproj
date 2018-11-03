@@ -96,6 +96,7 @@
   <ItemGroup>
     <Folder Include="Resources\" />
     <Folder Include="Views\" />
+    <Folder Include="Components\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
@@ -114,6 +115,7 @@
       <DependentUpon>SampleViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="Setup.cs" />
+    <Compile Include="Components\BottomSheetView.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PersistentBottomSheet.Core\PersistentBottomSheet.Core.csproj">

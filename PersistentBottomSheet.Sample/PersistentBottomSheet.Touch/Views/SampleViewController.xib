@@ -10,6 +10,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SampleViewController">
             <connections>
+                <outlet property="bottomView" destination="jUv-cR-SPP" id="name-outlet-jUv-cR-SPP"/>
+                <outlet property="mainView" destination="2" id="name-outlet-2"/>
                 <outlet property="view" destination="2" id="RRd-Eg-VrN"/>
             </connections>
         </placeholder>
@@ -18,18 +20,25 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SampleView" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="43X-96-ZkZ">
-                    <rect key="frame" x="141" y="323" width="93.5" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jUv-cR-SPP">
+                    <rect key="frame" x="0.0" y="517" width="375" height="150"/>
+                    <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="150" id="rPl-bP-Uz9"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="43X-96-ZkZ" firstAttribute="centerY" secondItem="2" secondAttribute="centerY" id="11m-Iq-epH"/>
-                <constraint firstItem="43X-96-ZkZ" firstAttribute="centerX" secondItem="2" secondAttribute="centerX" id="QXG-1x-Mzi"/>
+                <constraint firstItem="jUv-cR-SPP" firstAttribute="centerX" secondItem="2" secondAttribute="centerX" id="GLZ-1B-qsg"/>
+                <constraint firstAttribute="bottom" secondItem="jUv-cR-SPP" secondAttribute="bottom" id="Sq9-mq-uLZ"/>
+                <constraint firstItem="jUv-cR-SPP" firstAttribute="width" secondItem="2" secondAttribute="width" id="ke8-gL-Ayi"/>
             </constraints>
         </view>
+        <navigationItem title="Title" id="hSB-k9-7ZD">
+            <connections>
+                <outlet property="titleView" destination="jUv-cR-SPP" id="oYf-Yj-oIU"/>
+            </connections>
+        </navigationItem>
     </objects>
 </document>
