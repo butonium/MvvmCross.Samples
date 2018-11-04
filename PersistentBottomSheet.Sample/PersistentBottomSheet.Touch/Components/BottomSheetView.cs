@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using CoreGraphics;
 using Foundation;
 using UIKit;
@@ -7,146 +8,385 @@ namespace PersistentBottomSheet.Touch.Components
 {
     public class BottomSheetView : UIView
     {
-        UIScrollView scrollView;
-        UIImageView imageView;
-        UIView mainSubView;
-        UIImage headerImage;
-        UIImageView bluredImageView;
-        public UILabel headerLabelView;
-        CGRect kDefaultHeaderFrame = new CGRect(0, 0, 50, 50);
-        static float kParallaxDeltaFactor = 0.5f;
-        static float kMaxTitleAlphaOffset = 100.0f;
-        static float kLabelPaddingDist = 8.0f;
-
-        public BottomSheetView BottomSheetViewWithImage(UIImage image, CGSize headerSize)
+        public override void WillMoveToSuperview(UIView newsuper)
         {
-            BottomSheetView headerView = new BottomSheetView(new CGRect(0, 0, headerSize.Width, headerSize.Height));
-            //headerView.headerImage = image;
-            InitialSetupForDefaultHeader();
-            return headerView;
+            var scrollView = Superview;
+            if (Superview == null)
+                return;
+
+            scrollView.RemoveObserver(this, "contentOffset");
         }
 
-        public BottomSheetView BottomSheetViewWithImage(UIView subView)
+        public override void MovedToSuperview()
         {
-            BottomSheetView headerView = new BottomSheetView(new CGRect(0, 0, subView.Frame.Size.Width, subView.Frame.Size.Height));
-            InitialSetupForCustomSubView(subView);
-            return headerView;
+            var scrollView = Superview;
+            if (Superview == null)
+                return;
+
+            scrollView.AddObserver(this, "contentOffset", NSKeyValueObservingOptions.New, this.Handle);
         }
+    }
 
-        public BottomSheetView(CGRect size) : base(size)
+    public enum BottomSheetHeaderMode
+    {
+        /*
+         The option to scale the content to fill the size of the header. Some portion of the content may be clipped to fill the header’s bounds.
+         */
+        Fill,
+        /*
+         The option to center the content aligned at the top in the header's bounds.
+         */
+        Top,
+        /*
+         The option to scale the content to fill the size of the header and aligned at the top in the header's bounds.
+         */
+        TopFill,
+        /*
+         The option to center the content in the header’s bounds, keeping the proportions the same.
+         */
+        Center,
+        /*
+         The option to scale the content to fill the size of the header and center the content in the header’s bounds.
+         */
+        CenterFill,
+        /*
+         The option to center the content aligned at the bottom in the header’s bounds.
+         */
+        Bottom,
+        /*
+         The option to scale the content to fill the size of the header and aligned at the bottom in the header's bounds.
+         */
+        BottomFill
+    }
+
+    public class BottomSheetHeader : NSObject
+    {
+        private UIScrollView scrollView;
+        public UIScrollView ScrollView
         {
-
-        }
-
-        [Export("awakeFromNib")]
-        public void AwakeFromNib()
-        {
-            if (mainSubView != null)
-                InitialSetupForCustomSubView(mainSubView);
-            else
-                InitialSetupForDefaultHeader();
-
-            RefreshBlurViewForNewImage();
-        }
-
-        public void LayoutHeaderViewForScrollViewOffset(CGPoint offset)
-        {
-            CGRect frame = scrollView.Frame;
-
-            if (offset.Y > 0)
+            get
             {
-                var max = Math.Max(offset.Y * kParallaxDeltaFactor, 0f);
-                frame.Y = float.Parse(max.ToString());
-                scrollView.Frame = frame;
-                bluredImageView.Alpha = 1 / kDefaultHeaderFrame.Size.Height * offset.Y * 2;
-                ClipsToBounds = true;
+                return scrollView;
             }
-            else
+            set
             {
-                var delta = 0.0f;
-                CGRect rect = kDefaultHeaderFrame;
-                var min = Math.Abs(Math.Min(0.0f, offset.Y));
-                delta = float.Parse(min.ToString());
-                rect.Y -= delta;
-                //rect.Size.Height += delta;
-                scrollView.Frame = rect;
-                ClipsToBounds = false;
-                //self.headerTitleLabel.alpha = 1 - (delta) * 1 / kMaxTitleAlphaOffset;
+                if (value == scrollView)
+                    return;
+
+                scrollView = value;
+                scrollView.ContentInset = new UIEdgeInsets(scrollView.ContentInset.Top + Height, scrollView.ContentInset.Left, scrollView.ContentInset.Bottom, scrollView.ContentInset.Right);
+                scrollView.AddSubview(contentView);
+
+                LayoutContentView();
             }
         }
 
-        public void RefreshBlurViewForNewImage()
+        /*
+         The content view on top of the UIScrollView's content.
+         */
+        private UIView contentView;
+        public UIView ContentView
         {
-            //UIImage screenShot = Capture();
-            //screenShot.. [screenShot applyBlurWithRadius: 5 tintColor:[UIColor colorWithWhite: 0.6 alpha: 0.2] saturationDeltaFactor: 1.0 maskImage: nil];
-            //self.bluredImageView.image = screenShot;
+            get
+            {
+                if (ContentView == contentView)
+                    return contentView;
+
+                var tContentView = new BottomSheetView();
+                //tContentView.Parent = this;
+                tContentView.ClipsToBounds = true;
+
+                contentView = tContentView;
+
+                return tContentView;
+            }
         }
 
-        private void InitialSetupForDefaultHeader()
+        /*
+         The header's view.
+         */
+        private UIView view;
+        public UIView View
         {
-            scrollView = new UIScrollView(Bounds);
-            UIImageView tImageView = new UIImageView(Bounds);
-            tImageView.AutoresizingMask = UIViewAutoresizing.FlexibleLeftMargin | UIViewAutoresizing.FlexibleRightMargin | UIViewAutoresizing.FlexibleTopMargin | UIViewAutoresizing.FlexibleBottomMargin | UIViewAutoresizing.FlexibleHeight | UIViewAutoresizing.FlexibleWidth;
-            tImageView.ContentMode = UIViewContentMode.ScaleAspectFill;
-            tImageView.Image = headerImage;
-            imageView = tImageView;
-            scrollView.AddSubview(tImageView);
-            
-            CGRect labelRect = scrollView.Bounds;
-            labelRect.X = labelRect.Y = kLabelPaddingDist;
-            //labelRect.Size.Width = labelRect.size.width - 2 * kLabelPaddingDist;
-            //labelRect.Size.Height = labelRect.size.height - 2 * kLabelPaddingDist;
-            UILabel headerLabel = new UILabel(labelRect);
-            //headerLabel.TextAlignment = NSTextAlignmentCenter;
-            headerLabel.Lines = 0;
-            //headerLabel.LineBreakMode = NSLineBreakByWordWrapping;
-            headerLabel.AutoresizingMask = imageView.AutoresizingMask;
-            headerLabel.TextColor = UIColor.White;
-            //headerLabel.Font = new UIFontfontWithName:@"AvenirNextCondensed-Regular" size:23];
-            headerLabelView = headerLabel;
-            scrollView.AddSubview(headerLabelView);
-            
-            bluredImageView = new UIImageView(imageView.Frame);
-            bluredImageView.AutoresizingMask = imageView.AutoresizingMask;
-            bluredImageView.Alpha = 0.0f;
-            scrollView.AddSubview(bluredImageView);
-
-            AddSubview(scrollView);
-            
-            RefreshBlurViewForNewImage();
+            get
+            {
+                return view;
+            }
+            set
+            {
+                if (value == view)
+                    return;
+                view = value;
+                updateConstraints();
+            }
         }
 
-        private void InitialSetupForCustomSubView(UIView subView)
+        /*
+         The parallax header behavior mode. By default is fill mode.
+         */
+        private BottomSheetHeaderMode mode = BottomSheetHeaderMode.Fill;
+        public BottomSheetHeaderMode Mode
         {
-            scrollView = new UIScrollView(Bounds);
-            mainSubView = subView;
-            subView.AutoresizingMask = UIViewAutoresizing.FlexibleLeftMargin | UIViewAutoresizing.FlexibleRightMargin | UIViewAutoresizing.FlexibleTopMargin | UIViewAutoresizing.FlexibleBottomMargin | UIViewAutoresizing.FlexibleHeight | UIViewAutoresizing.FlexibleWidth;
-            scrollView.AddSubview(subView);
-
-            bluredImageView = new UIImageView(subView.Frame);
-            bluredImageView.AutoresizingMask = subView.AutoresizingMask;
-            bluredImageView.Alpha = 0.0f;
-            scrollView.AddSubview(bluredImageView);
-
-            AddSubview(scrollView);
-            RefreshBlurViewForNewImage();
+            get
+            {
+                return mode;
+            }
+            set
+            {
+                if (value == mode)
+                    return;
+                mode = value;
+                updateConstraints();
+            }
         }
 
-        private void SetHeaderImage(UIImage headerImage)
+        /*
+         The header's default height. 0 0 by default.
+         */
+        private float height = 0;
+        public float Height
         {
-            this.headerImage = headerImage;
-            imageView.Image = headerImage;
-            RefreshBlurViewForNewImage();
+            get
+            {
+                return height;
+            }
+            set
+            {
+                if (value == height)
+                    return;
+
+                scrollView.ContentInset = new UIEdgeInsets(scrollView.ContentInset.Top + Height, scrollView.ContentInset.Left, scrollView.ContentInset.Bottom, scrollView.ContentInset.Right);
+
+                height = value;
+
+                updateConstraints();
+                LayoutContentView();
+            }
         }
 
-        private UIImage ScreenShotOfView(UIView view)
+        /*
+         The header's minimum height while scrolling up. 0 by default.
+         */
+        private float minimumHeight = 0;
+        public float MinimumHeight
         {
-            UIGraphics.BeginImageContextWithOptions(kDefaultHeaderFrame.Size, true, 0.0f);
-            DrawViewHierarchy(kDefaultHeaderFrame, false);
-            UIImage image = UIGraphics.GetImageFromCurrentImageContext();
-            UIGraphics.EndImageContext();
-            
-            return image;
+            get
+            {
+                return minimumHeight;
+            }
+            set
+            {
+                minimumHeight = value;
+                LayoutContentView();
+            }
+        }
+
+        /*
+         The parallax header progress value.
+         */
+        private float progress = 0;
+        public float Progress
+        {
+            get
+            {
+                return progress;
+            }
+            set
+            {
+                if (value == progress)
+                    return;
+
+                progress = value;
+
+                //if (ParallaxHeaderDidScrollHandler != null) ? (self);
+            }
+        }
+
+        private void updateConstraints(bool update = false)
+        {
+            if (!update)
+            {
+                view.RemoveFromSuperview();
+                ContentView.AddSubview(view);
+
+                view.TranslatesAutoresizingMaskIntoConstraints = false;
+            }
+
+            switch (mode)
+            {
+                case BottomSheetHeaderMode.Fill:
+                    SetFillModeConstraints();
+                    break;
+                case BottomSheetHeaderMode.Top:
+                    SetTopModeConstraints();
+                    break;
+                case BottomSheetHeaderMode.TopFill:
+                    SetTopFillModeConstraints();
+                    break;
+                case BottomSheetHeaderMode.Center:
+                    SetCenterModeConstraints();
+                    break;
+                case BottomSheetHeaderMode.CenterFill:
+                    SetCenterFillModeConstraints();
+                    break;
+                case BottomSheetHeaderMode.Bottom:
+                    SetBottomModeConstraints();
+                    break;
+                case BottomSheetHeaderMode.BottomFill:
+                    SetBottomFillModeConstraints();
+                    break;
+            }
+        }
+
+        private void SetFillModeConstraints()
+        {
+            var binding = new Dictionary<string, object>{
+                {"v", view}
+            };
+
+            ContentView.AddConstraints(NSLayoutConstraint.FromVisualFormat("H:|[v]|", NSLayoutFormatOptions.DirectionLeadingToTrailing, null, binding));
+            ContentView.AddConstraints(NSLayoutConstraint.FromVisualFormat("V:|[v]|", NSLayoutFormatOptions.DirectionLeadingToTrailing, null, binding));
+        }
+
+        private void SetTopModeConstraints()
+        {
+            var binding = new Dictionary<string, object>{
+                {"v", view}
+            };
+
+            var metrics = new Dictionary<string, object>{
+                {"height", height}
+            };
+
+            ContentView.AddConstraints(NSLayoutConstraint.FromVisualFormat("H:|[v]|", NSLayoutFormatOptions.DirectionLeadingToTrailing, null, binding));
+            ContentView.AddConstraints(NSLayoutConstraint.FromVisualFormat("V:|[v(==height)]", NSLayoutFormatOptions.DirectionLeadingToTrailing, null, binding));
+        }
+
+        private void SetTopFillModeConstraints()
+        {
+            var binding = new Dictionary<string, object>{
+                {"v", view}
+            };
+
+            var metrics = new Dictionary<string, object>{
+                {"highPriority", UILayoutPriority.DefaultHigh},
+                {"height", height}
+            };
+
+            ContentView.AddConstraints(NSLayoutConstraint.FromVisualFormat("H:|[v]|", NSLayoutFormatOptions.DirectionLeadingToTrailing, null, binding));
+            ContentView.AddConstraints(NSLayoutConstraint.FromVisualFormat("V:|[v(>=height)]-0.0@highPriority-|", NSLayoutFormatOptions.DirectionLeadingToTrailing, null, binding));
+        }
+
+
+        private void SetCenterModeConstraints()
+        {
+            var binding = new Dictionary<string, object>{
+                {"v", view}
+            };
+
+            ContentView.AddConstraints(NSLayoutConstraint.FromVisualFormat("H:|[v]|", NSLayoutFormatOptions.DirectionLeadingToTrailing, null, binding));
+            ContentView.AddConstraint(NSLayoutConstraint.Create(view, NSLayoutAttribute.CenterY, NSLayoutRelation.Equal, contentView, NSLayoutAttribute.CenterY, 1, 0));
+            ContentView.AddConstraint(NSLayoutConstraint.Create(view, NSLayoutAttribute.CenterX, NSLayoutRelation.Equal, contentView, NSLayoutAttribute.CenterX, 1, 0));
+        }
+
+        private void SetCenterFillModeConstraints()
+        {
+            var binding = new Dictionary<string, object>{
+                {"v", view}
+            };
+
+            var metrics = new Dictionary<string, object>{
+                {"highPriority", UILayoutPriority.DefaultHigh},
+                {"height", height}
+            };
+
+            ContentView.AddConstraints(NSLayoutConstraint.FromVisualFormat("H:|[v]|", NSLayoutFormatOptions.DirectionLeadingToTrailing, null, binding));
+            ContentView.AddConstraints(NSLayoutConstraint.FromVisualFormat("V:|[v(>=height)]-0.0@highPriority-|", NSLayoutFormatOptions.DirectionLeadingToTrailing, null, binding));
+            ContentView.AddConstraint(NSLayoutConstraint.Create(view, NSLayoutAttribute.CenterY, NSLayoutRelation.Equal, contentView, NSLayoutAttribute.CenterY, 1, 0));
+            ContentView.AddConstraint(NSLayoutConstraint.Create(view, NSLayoutAttribute.CenterX, NSLayoutRelation.Equal, contentView, NSLayoutAttribute.CenterX, 1, 0));
+        }
+
+        private void SetBottomModeConstraints()
+        {
+            var binding = new Dictionary<string, object>{
+                {"v", view}
+            };
+
+            var metrics = new Dictionary<string, object>{
+                {"height", height}
+            };
+
+            ContentView.AddConstraints(NSLayoutConstraint.FromVisualFormat("H:|[v]|", NSLayoutFormatOptions.DirectionLeadingToTrailing, null, binding));
+            ContentView.AddConstraints(NSLayoutConstraint.FromVisualFormat("V:|[v(==height)]", NSLayoutFormatOptions.DirectionLeadingToTrailing, null, binding));
+        }
+
+        private void SetBottomFillModeConstraints()
+        {
+            var binding = new Dictionary<string, object>{
+                {"v", view}
+            };
+
+            var metrics = new Dictionary<string, object>{
+                {"highPriority", UILayoutPriority.DefaultHigh},
+                {"height", height}
+            };
+
+            ContentView.AddConstraints(NSLayoutConstraint.FromVisualFormat("H:|[v]|", NSLayoutFormatOptions.DirectionLeadingToTrailing, null, binding));
+            ContentView.AddConstraints(NSLayoutConstraint.FromVisualFormat("V:|-0.0@highPriority-[v(>=height)]|", NSLayoutFormatOptions.DirectionLeadingToTrailing, null, binding));
+        }
+
+        private void LayoutContentView()
+        {
+            if (scrollView == null)
+                return;
+
+            var minimumHeight = Math.Min(MinimumHeight, Height);
+            var relativeYOffset = scrollView.ContentOffset.Y + scrollView.ContentInset.Top - Height;
+            var relativeHeight = -relativeYOffset;
+
+
+            var frame = new CGRect(
+                x: 0,
+                y: relativeYOffset,
+                width: scrollView.Frame.Size.Width,
+                height: Math.Max(relativeHeight, minimumHeight));
+            contentView.Frame = frame;
+
+
+            var div = Height - MinimumHeight;
+            progress = (float)(ContentView.Frame.Size.Height - MinimumHeight) / div;
+        }
+
+
+        private void AdjustScrollViewTopInset(float top)
+        {
+            if (scrollView == null)
+                return;
+
+            var inset = scrollView.ContentInset;
+
+            //Adjust content offset
+            var offset = scrollView.ContentOffset;
+            offset.Y += inset.Top - top;
+            scrollView.ContentOffset = offset;
+
+            //Adjust content inset
+            inset.Top = top;
+            scrollView.ContentInset = inset;
+        }
+
+        [Export("observeValueForKeyPath:ofObject:change:context:")]
+        public void ObserveValue(NSString keyPath, NSObject ofObject, NSDictionary change, IntPtr context)
+        {
+            if (context != this.Handle)
+            {
+                ObserveValue(keyPath, ofObject, change, context);
+                return;
+            }
+            if (keyPath == "contentOffset")
+            {
+                LayoutContentView();
+            }
         }
     }
 }

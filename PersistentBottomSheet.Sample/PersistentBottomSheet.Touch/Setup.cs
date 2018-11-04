@@ -3,8 +3,8 @@ using PersistentBottomSheet.Core;
 
 namespace PersistentBottomSheet.Touch
 {
-    public class Setup : MvxIosSetup<App>
-    {
+    //public class Setup : MvxIosSetup<App>
+    //{
 
-    }
+    //}
 }

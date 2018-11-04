@@ -34,7 +34,7 @@
 	</array>
 	<key>XSAppIconAssets</key>
 	<string>Assets.xcassets/AppIcon.appiconset</string>
-	<key>UIMainNibFile</key>
-	<string>SampleViewController</string>
+	<key>UIMainStoryboardFile</key>
+	<string>SampleStoryboard</string>
 </dict>
 </plist>

@@ -7,7 +7,6 @@
 using Foundation;
 using System;
 using System.CodeDom.Compiler;
-using UIKit;
 
 namespace PersistentBottomSheet.Touch.Views
 {
@@ -16,22 +15,13 @@ namespace PersistentBottomSheet.Touch.Views
     {
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UIView bottomView { get; set; }
-
-        [Outlet]
-        [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UIView mainView { get; set; }
+        PersistentBottomSheet.Touch.BottomSheetView bottomView { get; set; }
 
         void ReleaseDesignerOutlets ()
         {
             if (bottomView != null) {
                 bottomView.Dispose ();
                 bottomView = null;
-            }
-
-            if (mainView != null) {
-                mainView.Dispose ();
-                mainView = null;
             }
         }
     }

@@ -100,7 +100,7 @@
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
-    <InterfaceDefinition Include="Views\SampleViewController.xib" />
+    <InterfaceDefinition Include="Views\SampleStoryboard.storyboard" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -110,12 +110,17 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
+    <Compile Include="Setup.cs" />
+    <Compile Include="Components\BottomSheetView.cs" />
     <Compile Include="Views\SampleViewController.cs" />
     <Compile Include="Views\SampleViewController.designer.cs">
       <DependentUpon>SampleViewController.cs</DependentUpon>
     </Compile>
-    <Compile Include="Setup.cs" />
-    <Compile Include="Components\BottomSheetView.cs" />
+    <Compile Include="Components\BottomSheetTableView.cs" />
+    <Compile Include="BottomSheetView.cs" />
+    <Compile Include="BottomSheetView.designer.cs">
+      <DependentUpon>BottomSheetView.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PersistentBottomSheet.Core\PersistentBottomSheet.Core.csproj">

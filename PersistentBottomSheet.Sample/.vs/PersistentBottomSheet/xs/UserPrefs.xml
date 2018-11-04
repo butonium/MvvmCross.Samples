@@ -1,23 +1,25 @@
 ﻿<Properties StartupConfiguration="{138DBB7C-62F4-4455-8E05-3D6DE059AD5F}|Default">
   <MonoDevelop.Ide.ItemProperties.PersistentBottomSheet.Touch PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.E04CBA69-249F-45FA-B896-40D3F8F6443B" automaticSigning="False" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="PersistentBottomSheet.Touch/Views/SampleViewController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="PersistentBottomSheet.Touch/BottomSheetView.cs">
     <Files>
       <File FileName="PersistentBottomSheet.Droid/Views/SampleView.cs" Line="1" Column="1" />
-      <File FileName="PersistentBottomSheet.Touch/AppDelegate.cs" Line="26" Column="1" />
-      <File FileName="PersistentBottomSheet.Touch/Main.cs" Line="12" Column="1" />
-      <File FileName="PersistentBottomSheet.Touch/Setup.cs" Line="8" Column="1" />
+      <File FileName="PersistentBottomSheet.Touch/Main.cs" Line="1" Column="1" />
+      <File FileName="PersistentBottomSheet.Touch/Components/BottomSheetView.cs" Line="127" Column="38" />
+      <File FileName="PersistentBottomSheet.Touch/Views/SampleViewController.cs" Line="40" Column="39" />
       <File FileName="PersistentBottomSheet.Touch/Info.plist" />
-      <File FileName="PersistentBottomSheet.Core/App.cs" Line="1" Column="1" />
-      <File FileName="PersistentBottomSheet.Touch/Views/SampleViewController.cs" Line="25" Column="51" />
-      <File FileName="PersistentBottomSheet.Droid/Components/BottomSheetView.cs" Line="1" Column="1" />
-      <File FileName="PersistentBottomSheet.Touch/Components/BottomSheetView.cs" Line="15" Column="16" />
+      <File FileName="PersistentBottomSheet.Touch/AppDelegate.cs" Line="25" Column="25" />
+      <File FileName="PersistentBottomSheet.Touch/Setup.cs" Line="6" Column="1" />
+      <File FileName="PersistentBottomSheet.Touch/Views/SampleStoryboard.storyboard" />
+      <File FileName="PersistentBottomSheet.Touch/Components/BottomSheetTableView.cs" Line="8" Column="1" />
+      <File FileName="PersistentBottomSheet.Touch/Views/SampleViewController.designer.cs" Line="1" Column="1" />
+      <File FileName="PersistentBottomSheet.Touch/BottomSheetView.cs" Line="21" Column="26" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.ItemProperties.PersistentBottomSheet.Droid PreferredExecutionTarget="Android.SelectDevice" AndroidDesignerPreferredTheme="AppTheme" />
+  <MonoDevelop.Ide.ItemProperties.PersistentBottomSheet.Droid AndroidDesignerPreferredDevice="Nexus 4" PreferredExecutionTarget="Android.SelectDevice" AndroidDesignerPreferredTheme="AppTheme" />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MultiItemStartupConfigurations />
 </Properties>
