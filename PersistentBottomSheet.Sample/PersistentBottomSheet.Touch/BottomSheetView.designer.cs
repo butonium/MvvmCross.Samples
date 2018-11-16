@@ -14,5 +14,25 @@ namespace PersistentBottomSheet.Touch
     [Register ("BottomSheetView")]
     partial class BottomSheetView
     {
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        PersistentBottomSheet.Touch.Views.SampleViewController dataSource { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        PersistentBottomSheet.Touch.Views.SampleViewController @delegate { get; set; }
+
+        void ReleaseDesignerOutlets ()
+        {
+            if (dataSource != null) {
+                dataSource.Dispose ();
+                dataSource = null;
+            }
+
+            if (@delegate != null) {
+                @delegate.Dispose ();
+                @delegate = null;
+            }
+        }
     }
 }

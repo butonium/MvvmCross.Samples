@@ -89,7 +89,7 @@ namespace PersistentBottomSheet.Touch.Components
         {
             get
             {
-                if (ContentView == contentView)
+                if (contentView != null)
                     return contentView;
 
                 var tContentView = new BottomSheetView();

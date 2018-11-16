@@ -5,7 +5,7 @@ using UIKit;
 
 namespace PersistentBottomSheet.Touch
 {
-    public partial class BottomSheetView : UITableView
+    public partial class BottomSheetView : UIScrollView
     {
         public BottomSheetView (IntPtr handle) : base (handle)
         {

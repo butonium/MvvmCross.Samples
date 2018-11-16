@@ -101,6 +101,7 @@
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
     <InterfaceDefinition Include="Views\SampleStoryboard.storyboard" />
+    <InterfaceDefinition Include="Views\BottomSheetViewController.xib" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -120,6 +121,10 @@
     <Compile Include="BottomSheetView.cs" />
     <Compile Include="BottomSheetView.designer.cs">
       <DependentUpon>BottomSheetView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\BottomSheetViewController.cs" />
+    <Compile Include="Views\BottomSheetViewController.designer.cs">
+      <DependentUpon>BottomSheetViewController.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

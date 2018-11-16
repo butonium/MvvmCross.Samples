@@ -7,11 +7,12 @@
 using Foundation;
 using System;
 using System.CodeDom.Compiler;
+using UIKit;
 
 namespace PersistentBottomSheet.Touch.Views
 {
-    [Register ("SampleViewController")]
-    partial class SampleViewController
+    [Register ("BottomSheetViewController")]
+    partial class BottomSheetViewController
     {
         void ReleaseDesignerOutlets ()
         {
