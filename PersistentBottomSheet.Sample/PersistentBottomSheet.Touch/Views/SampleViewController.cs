@@ -2,11 +2,6 @@
 
 using System;
 using CoreGraphics;
-using Foundation;
-using MvvmCross.Platforms.Ios.Presenters.Attributes;
-using MvvmCross.Platforms.Ios.Views;
-using PersistentBottomSheet.Core.ViewModels;
-using PersistentBottomSheet.Touch.Components;
 using UIKit;
 
 namespace PersistentBottomSheet.Touch.Views
@@ -20,7 +15,6 @@ namespace PersistentBottomSheet.Touch.Views
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
-            //SetupParallaxHeader();
             SetupBottomSheet();
         }
 
@@ -38,52 +32,6 @@ namespace PersistentBottomSheet.Touch.Views
             var height = View.Frame.Height;
             var width = View.Frame.Width;
             bottomSheetVC.View.Frame = new CGRect(0, this.View.Frame.GetMaxY(), width, height);
-
         }
-
-
-        //MARK: private
-
-        private void SetupParallaxHeader()
-        {
-            //ar imageView = new UIImageView();
-            //imageView.Image = UIImage.FromFile("profile");
-            //imageView.ContentMode = UIViewContentMode.ScaleToFill.ScaleAspectFill;
-
-
-
-            //headerImageView = imageView
-            //try
-            //{
-            //    bottomView.BottomHeader = new BottomSheetHeader();
-            //    bottomView.BottomHeader.View = imageView;
-            //    bottomView.BottomHeader.Height = 400;
-            //    bottomView.BottomHeader.MinimumHeight = 0;
-            //    bottomView.BottomHeader.Mode = BottomSheetHeaderMode.TopFill;
-            //}
-            //catch (Exception ex)
-            //{
-
-            //}
-            //bottomView.BottomHeader.parallaxHeaderDidScrollHandler = {
-            //    parallaxHeader in
-            //print(parallaxHeader.progress)
-        }
-
-
-
-        //MARK: table view data source/delegate
-
-        //public override nint RowsInSection(UITableView tableView, nint section)
-        //{
-        //    return 20;
-        //}
-
-        //public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
-        //{
-        //    var cell = new UITableViewCell();
-        //    cell.TextLabel.Text = "blablabla";
-        //    return cell;
-        //}
     }
 }

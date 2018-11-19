@@ -96,7 +96,6 @@
   <ItemGroup>
     <Folder Include="Resources\" />
     <Folder Include="Views\" />
-    <Folder Include="Components\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
@@ -112,15 +111,9 @@
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <Compile Include="Setup.cs" />
-    <Compile Include="Components\BottomSheetView.cs" />
     <Compile Include="Views\SampleViewController.cs" />
     <Compile Include="Views\SampleViewController.designer.cs">
       <DependentUpon>SampleViewController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Components\BottomSheetTableView.cs" />
-    <Compile Include="BottomSheetView.cs" />
-    <Compile Include="BottomSheetView.designer.cs">
-      <DependentUpon>BottomSheetView.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\BottomSheetViewController.cs" />
     <Compile Include="Views\BottomSheetViewController.designer.cs">
