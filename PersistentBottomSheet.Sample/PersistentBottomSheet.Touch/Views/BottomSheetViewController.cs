@@ -6,6 +6,15 @@ namespace PersistentBottomSheet.Touch.Views
 {
     public partial class BottomSheetViewController : UIViewController
     {
+        float fullView = 100;
+        nfloat partialView
+        {
+            get
+            {
+                return UIScreen.MainScreen.Bounds.Height - UIApplication.SharedApplication.StatusBarFrame.Height;
+            }
+        }
+
         public BottomSheetViewController() : base("BottomSheetViewController", null)
         {
         }
@@ -47,6 +56,31 @@ namespace PersistentBottomSheet.Touch.Views
             var y = View.Frame.GetMinY();
             View.Frame = new CGRect(0, y + translation.Y, View.Frame.Width, View.Frame.Height);
             recognizer.SetTranslation(CGPoint.Empty, View);
+
+            var velocity = recognizer.VelocityInView(View);
+            if ((y + translation.Y >= fullView) & (y + translation.Y <= partialView))
+            {
+                View.Frame = new CGRect(0, y + translation.Y, View.Frame.Width, View.Frame.Height);
+                recognizer.SetTranslation(CGPoint.Empty, View);
+            }
+
+            if (recognizer.State == UIGestureRecognizerState.Ended)
+            {
+                var duration = velocity.Y < 0 ? ((y - fullView) / -velocity.Y) : ((partialView - y) / velocity.Y);
+                duration = duration > 1.3 ? 1 : duration;
+
+                UIView.Animate(duration, 0.0, UIViewAnimationOptions.AllowUserInteraction, () =>
+                {
+                    if (velocity.Y >= 0)
+                    {
+                        View.Frame = new CGRect(0, partialView, View.Frame.Width, View.Frame.Height);
+                    }
+                    else
+                    {
+                        View.Frame = new CGRect(0, fullView, View.Frame.Width, View.Frame.Height);
+                    }
+                }, null);
+            }
         }
 
 
@@ -60,7 +94,7 @@ namespace PersistentBottomSheet.Touch.Views
             visualEffect.Frame = UIScreen.MainScreen.Bounds;
             bluredView.Frame = UIScreen.MainScreen.Bounds;
 
-            View.InsertSubview(bluredView, atIndex: 0);
+            View.InsertSubview(bluredView, 0);
         }
     }
 }

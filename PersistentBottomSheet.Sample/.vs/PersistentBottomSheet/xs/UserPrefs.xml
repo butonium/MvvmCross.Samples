@@ -1,15 +1,14 @@
 ﻿<Properties StartupConfiguration="{138DBB7C-62F4-4455-8E05-3D6DE059AD5F}|Default">
-  <MonoDevelop.Ide.ItemProperties.PersistentBottomSheet.Touch PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.1704F58C-F1C7-4E40-AF10-0D5E0026898C" automaticSigning="False" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="PersistentBottomSheet.Touch/AppDelegate.cs">
+  <MonoDevelop.Ide.ItemProperties.PersistentBottomSheet.Touch PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.751FE93F-E54B-4371-8CE5-9506835CF1C9" automaticSigning="False" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="PersistentBottomSheet.Touch/Views/SampleViewController.cs">
     <Files>
       <File FileName="PersistentBottomSheet.Droid/Views/SampleView.cs" Line="1" Column="1" />
       <File FileName="PersistentBottomSheet.Touch/Main.cs" Line="12" Column="1" />
-      <File FileName="PersistentBottomSheet.Touch/Views/SampleViewController.cs" Line="17" Column="32" />
+      <File FileName="PersistentBottomSheet.Touch/Views/SampleViewController.cs" Line="9" Column="66" />
       <File FileName="PersistentBottomSheet.Touch/Info.plist" />
       <File FileName="PersistentBottomSheet.Touch/AppDelegate.cs" Line="25" Column="25" />
       <File FileName="PersistentBottomSheet.Touch/Setup.cs" Line="10" Column="2" />
       <File FileName="PersistentBottomSheet.Touch/Components/BottomSheetTableView.cs" Line="8" Column="1" />
-      <File FileName="PersistentBottomSheet.Touch/Views/SampleViewController.designer.cs" Line="1" Column="1" />
       <File FileName="PersistentBottomSheet.Droid/Components/BottomSheetView.cs" Line="1" Column="1" />
       <File FileName="PersistentBottomSheet.Touch/Views/BottomSheetViewController.cs" Line="35" Column="10" />
       <File FileName="PersistentBottomSheet.Touch/Views/BottomSheetViewController.xib" />
