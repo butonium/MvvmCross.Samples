@@ -13,8 +13,16 @@ namespace PersistentBottomSheet.Touch.Views
     [Register ("SampleViewController")]
     partial class SampleViewController
     {
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIButton btMain { get; set; }
+
         void ReleaseDesignerOutlets ()
         {
+            if (btMain != null) {
+                btMain.Dispose ();
+                btMain = null;
+            }
         }
     }
 }

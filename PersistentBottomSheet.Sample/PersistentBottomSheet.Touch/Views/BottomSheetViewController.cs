@@ -28,12 +28,6 @@ namespace PersistentBottomSheet.Touch.Views
             View.AddGestureRecognizer(gesture);
         }
 
-        public override void DidReceiveMemoryWarning()
-        {
-            base.DidReceiveMemoryWarning();
-            // Release any cached data, images, etc that aren't in use.
-        }
-
         public override void ViewWillAppear(bool animated)
         {
             base.ViewWillAppear(animated);
