@@ -6,7 +6,7 @@ using UIKit;
 
 namespace PersistentBottomSheet.Touch.Views
 {
-    public partial class SampleViewController : UIViewController//MvxTableViewController<SampleViewModel>
+    public partial class SampleViewController : UIViewController
 	{
         BottomSheetViewController bottomSheetViewController;
 
@@ -38,7 +38,6 @@ namespace PersistentBottomSheet.Touch.Views
             btMain.TouchUpInside += BtMain_TouchUpInside;
 
             UITapGestureRecognizer tapGesture = new UITapGestureRecognizer(HandleAction);
-
             View.AddGestureRecognizer(tapGesture);
         }
 
